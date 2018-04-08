@@ -46,7 +46,7 @@ class CServ():
 
     def mainloop(self):
         clients = []
-        clients_dict = {}
+        #clients_dict = {}
         while True:
             try:
                 conn, addr = self.sock.accept()
@@ -73,6 +73,6 @@ class CServ():
 
 
 
-
+servak = CServ()
 print('Эхо-сервер запущен!')
 mainloop()
