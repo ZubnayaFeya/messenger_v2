@@ -3,7 +3,6 @@ import select
 import json
 import sqlalchemy
 import threading  #Thread
-
 import jim
 import type_msg
 
@@ -21,12 +20,6 @@ class CServ():
         sock.listen(self.queue)
         sock.settimeout(self.timeout)
         self.sock = sock
-
-
-
-
-
-
 
 
 servak = CServ()

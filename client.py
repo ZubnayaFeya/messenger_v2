@@ -18,7 +18,8 @@ class CClient():
             jim.f_send_message(self.sock, f_presence(self.name))
 
             while 1:
-                tr_send = Thread(target=self.recv_data())
+                tr_send = Thread(target=self.recv_data(), daemon=True)
+                tr_send.start()
 
     def recv_data(self):
         result = self.sock.recv(1024)
