@@ -1,13 +1,13 @@
 from time import time
 
 
-def f_presence():
+def f_presence(name):
     presence = {
         'action': 'presence',
         'time': time(),
         'type': 'status',
         'user': {
-            'account_name': 'CodeMaverick',
+            'account_name': name,
             'status': 'Да, я здесь!'
         }
     }

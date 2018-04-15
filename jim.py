@@ -28,3 +28,8 @@ def f_encode(decodet_data):
 
 def f_check_message():
     pass
+
+### Client function:
+
+def f_send_message(sock, message):
+    sock.send(f_encode(message))

@@ -46,7 +46,7 @@ class CServ():
 
     def mainloop(self):
         clients = []
-        #clients_dict = {}
+        clients_dict = {}
         while True:
             try:
                 conn, addr = self.sock.accept()
