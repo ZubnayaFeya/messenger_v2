@@ -28,7 +28,7 @@ class CClient():
 
 
 
-cli = CClient('Danila')
+cli = CClient(input('Введите имя: '))
 
 res = cli.recv_data()
 print(cli.prepare_resalt(res))
