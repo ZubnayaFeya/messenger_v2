@@ -72,7 +72,6 @@ class CServ():
 
 
 
-
 servak = CServ()
 print('Эхо-сервер запущен!')
 mainloop()
