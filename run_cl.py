@@ -1,11 +1,13 @@
-from subprocess import Popen, CREATE_NEW_CONSOLE
+# coding: utf8
+#! /usr/bin/python3
+from subprocess import Popen
 import sys
+import os
 
 
-
-
-client1 = sys.argv[1]
-client2 = sys.argv[2]
-Popen('python3 {}'.format(client1), creationflags=CREATE_NEW_CONSOLE)
-Popen('python3 {}'.format(client2), creationflags=CREATE_NEW_CONSOLE)
+path = os.getcwd()
+#client1 = sys.argv[1]
+#client2 = sys.argv[2]
+p = Popen("{}/client.py".format(path))
+#Popen('python3 {}'.format(client2))
 
