@@ -1,8 +1,5 @@
 # coding: utf8
 import socket
-import json
-import argparse
-#from time import ctime
 from type_msg import *
 import jim
 from threading import Thread

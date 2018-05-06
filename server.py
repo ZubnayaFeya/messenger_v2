@@ -2,7 +2,6 @@ import socket
 import select
 import json
 import sqlalchemy
-import threading  #Thread
 
 import jim
 import type_msg
@@ -26,8 +25,8 @@ class CServ():
         responses = {}	#Словарь ответов сервера вида{сокет: запрос}
         for sock in r_clients:
             try:
-                data = jim.f_decode(self.sock.recv(1024))
-                responses[sock] = data
+                data = self.sock.recv(1024)
+                responses[sock] = jim.f_decode(data)
             except:
                 print('Клиент {} {} отключился'.format(sock.fileno(), sock.getpeername()))
                 all_clients.remove(sock)
@@ -36,9 +35,10 @@ class CServ():
     def write_responses(self, requests, w_clients, all_clients):
         for sock in w_clients:
             for s, message in requests.items():
+                print(message)
                 try:
-                    resp = requests[sock].encode('utf-8')
-                    test_len = sock.send(resp.upper())
+                    resp = jim.f_encode(message)
+                    sock.send(resp)
                 except:
                     print('Клиент {} {} отключился'.format(sock.fileno(), sock.getpeername()))
                     sock.close()
@@ -61,7 +61,7 @@ class CServ():
                 w = []
                 try:
                     r, w, e = select.select(clients, clients, [], wait)
-                    print(w, r)
+                    #print(w, r)
                 except:
                     pass
 
@@ -73,5 +73,7 @@ class CServ():
 
 
 servak = CServ()
+servak.soc_serv()
 print('Эхо-сервер запущен!')
-mainloop()
+servak.mainloop()
+servak.sock.close()
