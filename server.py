@@ -1,10 +1,10 @@
 import socket
 import select
-import json
-import sqlalchemy
+# import json
+# import sqlalchemy
 
 import jim
-import type_msg
+# import type_msg
 
 
 class CServ():
@@ -46,7 +46,7 @@ class CServ():
 
     def mainloop(self):
         clients = []
-        clients_dict = {}
+        # clients_dict = {}
         while True:
             try:
                 conn, addr = self.sock.accept()
@@ -61,7 +61,6 @@ class CServ():
                 w = []
                 try:
                     r, w, e = select.select(clients, clients, [], wait)
-                    #print(w, r)
                 except:
                     pass
 

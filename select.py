@@ -1,3 +1,4 @@
+# coding: utf8
 import socket
 import select
 
@@ -11,7 +12,6 @@ def read_requests(r_clients, all_clients):
         except:
             print('Клиент {} {} отключился'.format(sock.fileno(), sock.getpeername()))
             all_clients.remove(sock)
-
     return responses
 
 
@@ -19,8 +19,8 @@ def write_responses(requests, w_clients, all_clients):
     for sock in w_clients:
         for s, message in requests.items():
             try:
-                resp = requests[sock].encode('utf-8')
-                test_len = sock.send(resp.upper())
+                resp = message.encode('utf-8')
+                sock.send(resp)
             except:
                 print('Клиент {} {} отключился'.format(sock.fileno(), sock.getpeername()))
                 sock.close()
@@ -34,7 +34,7 @@ def mainloop():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind(ADDRESS)
     s.listen(10)
-    s.timeout(0.2)
+    s.settimeout(0.3)
     while True:
         try:
             conn, addr = s.accept()
@@ -49,7 +49,7 @@ def mainloop():
             w = []
             try:
                 r, w, e = select.select(clients, clients, [], wait)
-                print(w, r)
+                # print(w, r)
             except:
                 pass
 
@@ -58,4 +58,6 @@ def mainloop():
 
 
 print('Эхо-сервер запущен!')
+
+
 mainloop()
