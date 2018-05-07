@@ -25,7 +25,7 @@ class CServ():
         responses = {}	#Словарь ответов сервера вида{сокет: запрос}
         for sock in r_clients:
             try:
-                data = self.sock.recv(1024)
+                data = sock.recv(1024)
                 responses[sock] = jim.f_decode(data)
             except:
                 print('Клиент {} {} отключился'.format(sock.fileno(), sock.getpeername()))
